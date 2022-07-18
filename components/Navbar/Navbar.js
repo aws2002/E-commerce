@@ -39,14 +39,20 @@ export default function Navbar() {
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                     alt="Workflow"
                   /> */}
-                  <h1 className=" text-3xl hidden lg:block h-8 w-auto"><span>Pro</span>Shop</h1>
+                  <h1 className=" text-white block lg:hidden text-xl w-auto">
+                    <span className=" text-main">Pro</span>Shop
+                  </h1>
+
+                  <h1 className=" text-white text-3xl hidden lg:block h-8 w-auto">
+                    <span className=" text-main">Pro</span>Shop
+                  </h1>
                   {/* <img
                     className="hidden lg:block h-8 w-auto"
                     src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                     alt="Workflow"
                   /> */}
                 </div>
-                <div className="hidden sm:block sm:ml-6 mxAuto w-1/3">
+                <div className="hidden sm:block sm:ml-6 mxAuto w-1/3 pt-2">
                   <input
                     type="text"
                     className=" w-full font-medium py-1 focus:ring-2 rounded-md focus:outline-none focus:border-indigo-500 focus:ring-indigo-500"
@@ -138,10 +144,12 @@ export default function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block px-3 py-2 rounded-md text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>

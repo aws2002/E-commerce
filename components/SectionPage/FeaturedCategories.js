@@ -69,11 +69,11 @@ export default function FeaturedCategories() {
     },
   ];
   return (
-    <section className="TrendingCourses my-16 py-5">
+    <section className="TrendingCourses my-16 py-5 px-4">
       <div className="container overflow-hidden">
         <div className=" grid grid-cols-12">
           <div className="col-span-12">
-            <h2 className=" font-medium text-3xl uppercase">Recently viewed</h2>
+            <h2 className=" font-medium text-3xl uppercase">Featured Categories</h2>
             <div className="line mt-3"></div>
           </div>
           <div className="col-span-12 mt-8">

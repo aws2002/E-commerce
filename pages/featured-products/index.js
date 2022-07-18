@@ -30,31 +30,31 @@ export default function FeaturedProducts() {
         <div className=" grid grid-cols-3 gap-5 my-8">
           {dataRecentlyViewed.map(
             ({ id, name, prise, img, star, styleBox }) => (
-              <>
-                <div
-                  className={`col-span-1 flex justify-center items-center py-4 bg-white`}
-                  key={id}
-                >
-                  <div>
-                    <div className=" flex justify-center items-center ">
-                      <Image src={img} width={300} height={270} alt="" />
+              <div
+                className={`col-span-1 flex justify-center items-center py-4 border-2 rounded-md`}
+                key={id}
+              >
+                <div>
+                  <div className=" flex justify-center items-center ">
+                    <Image src={img} width={300} height={270} alt="" />
+                  </div>
+                  <h3 className=" text-center text-2xl font-semibold mb-2">
+                    {name}
+                  </h3>
+                  {star}
+                  <p className=" text-center text-3xl font-bold">{prise}</p>
+                  <div className=" grid-cols-12 grid mt-3 gap-x-2">
+                    <div className="col-span-2 bg-slate-100 rounded">
+                      <button className="w-full">s</button>
                     </div>
-                    <h3 className=" text-center text-2xl font-semibold mb-2">
-                      {name}
-                    </h3>
-                    {star}
-                    <p className=" text-center text-3xl font-bold">{prise}</p>
-                    <div className=" grid-cols-12 grid mt-3 gap-x-2">
-                      <div className="col-span-2 bg-slate-100 rounded">
-                        <button className="w-full">s</button>
-                      </div>
-                      <div className=" col-span-10 bg-slate-100 text-center py-2 rounded">
-                        <button className=" w-full text-slate-600 font-semibold">Add to cart</button>
-                      </div>
+                    <div className=" col-span-10 bg-slate-100 text-center py-2 rounded">
+                      <button className=" w-full text-slate-600 font-semibold">
+                        Add to cart
+                      </button>
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             )
           )}
         </div>

@@ -23,7 +23,7 @@ export default function RecentlyViewed({ titel }) {
     },
     {
       id: 2,
-      img: "/assets/canon.png",
+      img: "/assets/logitech.png",
       name: "Logitech G-Series Gaming Mouse",
       prise: "$49.99",
       star: (
@@ -64,7 +64,7 @@ export default function RecentlyViewed({ titel }) {
     });
   }
   return (
-    <section className="recently--viewed">
+    <section className="recently--viewed px-4 my-10">
       <div className=" container">
         <h2 className=" font-medium text-3xl uppercase">{titel}</h2>
         <div className="line mt-3"></div>
@@ -77,7 +77,7 @@ export default function RecentlyViewed({ titel }) {
               >
                 <div>
                   <div className=" flex justify-center items-center ">
-                    <Image src={img} width={300} height={270} alt="" />
+                    <Image src={img} width={290} height={270} alt="" />
                   </div>
                   <h3 className=" text-center text-2xl font-semibold mb-2">
                     {name}
@@ -87,13 +87,11 @@ export default function RecentlyViewed({ titel }) {
 
                   <div className=" grid-cols-12 grid mt-3 gap-x-2">
                     <div className="col-span-2 bg-slate-100 rounded flex justify-center items-center">
-                      
-                        <Bookmark
-                          className="w-full"
-                          isFilled={Favorite.isFavorite}
-                          handleClick={toggleFavorite}
-                        />
-                      
+                      <Bookmark
+                        className="w-full"
+                        isFilled={Favorite.isFavorite}
+                        handleClick={toggleFavorite}
+                      />
                     </div>
                     <div className=" col-span-10 bg-slate-100 text-center py-2 rounded">
                       <button className=" w-full text-slate-600 font-semibold">

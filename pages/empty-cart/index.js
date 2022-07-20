@@ -2,56 +2,9 @@ import Link from "next/link";
 import Layout from "../../components/Layouts/Layout";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import Image from "next/image";
-import Bookmark from "../../components/Tools/Bookmark";
 import RecentlyViewed from "../../components/SectionPage/RecentlyViewed";
 export default function EmptyCart() {
-  const dataRecentlyViewed = [
-    {
-      id: 1,
-      img: "/assets/canon.png",
-      name: "Canon Eos 80D DSLR Camera",
-      prise: "$799.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      styleBox: "",
-    },
-    {
-      id: 2,
-      img: "/assets/canon.png",
-      name: "Logitech G-Series Gaming Mouse",
-      prise: "$49.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      styleBox: "border-r-2 border-l-2 border-r-main border-l-main",
-    },
-    {
-      id: 3,
-      img: "/assets/canon.png",
-      name: "Amazon Echo Dot 3rd Generation",
-      prise: "$29.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      styleBox: "",
-    },
-  ];
+
   return (
     <>
       <section className="empty-cart px-5 py-5">

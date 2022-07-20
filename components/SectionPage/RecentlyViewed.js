@@ -3,6 +3,7 @@ import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import Image from "next/image";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import Bookmark from "../Tools/Bookmark";
+import data from "../Data";
 export default function RecentlyViewed({ titel }) {
   const dataRecentlyViewed = [
     {
@@ -69,20 +70,20 @@ export default function RecentlyViewed({ titel }) {
         <h2 className=" font-medium text-3xl uppercase">{titel}</h2>
         <div className="line mt-3"></div>
         <div className=" grid grid-cols-3 my-8 border-2 border-main rounded-xl">
-          {dataRecentlyViewed.map(
-            ({ id, name, prise, img, star, styleBox }) => (
+          {data.products.map(
+            ({ id, name, prise, image }) => (
               <div
-                className={`col-span-1 flex justify-center items-center py-4 ${styleBox}`}
+                className={`col-span-1 flex justify-center items-center py-4`}
                 key={id}
               >
                 <div>
                   <div className=" flex justify-center items-center ">
-                    <Image src={img} width={290} height={270} alt="" />
+                    <Image src={image} width={290} height={270} alt="" />
                   </div>
                   <h3 className=" text-center text-2xl font-semibold mb-2">
                     {name}
                   </h3>
-                  {star}
+                  {/* {star} */}
                   <p className=" text-center text-3xl font-bold">{prise}</p>
 
                   <div className=" grid-cols-12 grid mt-3 gap-x-2">

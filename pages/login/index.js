@@ -39,7 +39,6 @@ export default function SignIn() {
       required: true,
     },
   ];
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };

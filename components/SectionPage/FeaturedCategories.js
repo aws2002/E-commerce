@@ -1,5 +1,6 @@
 import Slider from "react-slick";
 import React from "react";
+import data from "../Data";
 export default function FeaturedCategories() {
   const settings = {
     dots: true,
@@ -41,33 +42,7 @@ export default function FeaturedCategories() {
       },
     ],
   };
-  const DataFeaturedCategories = [
-    {
-      id: 1,
-      img: "/assets/laptop.png",
-      titel: "LAPTOP",
-    },
-    {
-      id: 2,
-      img: "/assets/iphone11-removebg-preview.png",
-      titel: "COMPUTER COMPONENTS",
-    },
-    {
-      id: 3,
-      img: "/assets/laptop.png",
-      titel: "DEVICES",
-    },
-    {
-      id: 4,
-      img: "/assets/laptop.png",
-      titel: "ACCESSORIES",
-    },
-    {
-      id: 5,
-      img: "/assets/laptop.png",
-      titel: "ACCESSORIES",
-    },
-  ];
+
   return (
     <section className="TrendingCourses my-16 py-5 px-4">
       <div className="container overflow-hidden">
@@ -78,13 +53,13 @@ export default function FeaturedCategories() {
           </div>
           <div className="col-span-12 mt-8">
             <Slider {...settings}>
-              {DataFeaturedCategories.map((item) => (
+              {data.products.map((item) => (
                 <div className="my-10 px-2" key={item.id}>
                   <div className=" flex justify-center items-center rounded-lg bg-slate-200">
-                    <img className=" w-1/2" src={item.img} alt="" />
+                    <img className=" w-1/2" src={item.image} alt="" />
                   </div>
                   <h2 className=" text-center mt-5 uppercase text-xl text-color_1">
-                    {item.titel}
+                    {item.name}
                   </h2>
                 </div>
               ))}

@@ -5,7 +5,7 @@ export default function Errorr() {
     <section className="error px-5 py-5">
       <div className=" grid container grid-cols-12">
         <div className="col-span-12  m-auto text-center">
-          <img src="/asset 3.svg" alt="" />
+          {/* <img src="/asset 3.svg" alt="" /> */}
           <h6 className=" text-color_10 font-bold text-9xl text-center mt-9">
             404
           </h6>

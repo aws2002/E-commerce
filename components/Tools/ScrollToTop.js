@@ -22,7 +22,7 @@ export default function ScrollToTop() {
   return (
     <div>
       {isVisible && (
-        <span onClick={scrollToTop} className=" transition-all hover:bg-opacity-80 bg-color_5 text-white w-14 h-14 rounded-md text-4xl fixed right-9 bottom-9 flex justify-center items-center cursor-pointer">
+        <span onClick={scrollToTop} className=" transition-all hover:bg-opacity-80 bg-main text-white w-14 h-14 rounded-md text-4xl fixed right-9 bottom-9 flex justify-center items-center cursor-pointer">
           <FiArrowUp />
         </span>
       )}

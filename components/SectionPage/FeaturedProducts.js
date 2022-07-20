@@ -2,7 +2,12 @@ import Slider from "react-slick";
 import React from "react";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import Bookmark from "../Tools/Bookmark";
+import data from "../Data";
+import Link from "next/link";
+import db from "../../utils/db"
+import Product from '../../models/Product';
 export default function FeaturedProducts() {
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -23,19 +28,19 @@ export default function FeaturedProducts() {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
-        breakpoint: 1023,
+        breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
         },
       },
       {
-        breakpoint: 767,
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -43,84 +48,8 @@ export default function FeaturedProducts() {
       },
     ],
   };
-  const DataFeaturedProducts = [
-    {
-      id: 1,
-      img: "/assets/laptop.png",
-      titel: "LAPTOP",
-      prise: "$799.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      isFavorite: true,
-    },
-    {
-      id: 2,
-      img: "/assets/iphone11-removebg-preview.png",
-      titel: "COMPUTER COMPONENTS",
-      prise: "$799.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      isFavorite: true,
-    },
-    {
-      id: 3,
-      img: "/assets/laptop.png",
-      titel: "DEVICES",
-      prise: "$799.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      isFavorite: true,
-    },
-    {
-      id: 4,
-      img: "/assets/laptop.png",
-      titel: "ACCESSORIES",
-      prise: "$799.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      isFavorite: true,
-    },
-    {
-      id: 5,
-      img: "/assets/laptop.png",
-      titel: "ACCESSORIES",
-      prise: "$799.99",
-      star: (
-        <i className="text-center block text-main">
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-          <FaStar className=" inline text-xl" />
-        </i>
-      ),
-      isFavorite: false,
-    },
-  ];
-  const [Favorite, setFavorite] = React.useState(DataFeaturedProducts);
+
+  const [Favorite, setFavorite] = React.useState(data.products);
   function toggleFavorite() {
     setFavorite((prevContact) => {
       return {
@@ -141,25 +70,28 @@ export default function FeaturedProducts() {
           </div>
           <div className="col-span-12 mt-8">
             <Slider {...settings}>
-              {DataFeaturedProducts.map((item) => (
+              {data.products.map((item) => (
                 <div className="my-10 px-2" key={item.id}>
                   <div className="bg-white rounded-lg pb-8 px-4">
                     <div className=" flex justify-center items-center  ">
-                      <img className=" w-1/2" src={item.img} alt="" />
+                      <img className=" w-1/2" src={item.image} alt="" />
                     </div>
                     <div className=" text-center">
-                      <h4 className=" text-color_1 text-2xl">{item.titel}</h4>
+                      <Link href={`/products/${item.slug}`} >
+                        <a className=" text-color_1 text-2xl">{item.name}</a>
+                      </Link>
+                      
                       {item.star}
                       <span className=" mt-2 block text-xl font-bold">
-                        {item.prise}
+                        ${item.price}
                       </span>
                       <div className=" grid-cols-12 grid mt-3 gap-x-2">
                         <div className="col-span-2 bg-slate-100 rounded flex justify-center items-center">
-                          <Bookmark
+                          {/* <Bookmark
                             className="w-full"
                             isFilled={Favorite.isFavorite}
                             handleClick={toggleFavorite}
-                          />
+                          /> */}
                         </div>
                         <div className=" col-span-10 bg-slate-100 text-center py-2 rounded">
                           <button className=" w-full text-slate-600 font-semibold">
@@ -178,3 +110,5 @@ export default function FeaturedProducts() {
     </section>
   );
 }
+
+

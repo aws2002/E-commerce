@@ -1,9 +1,7 @@
 import React from "react";
-
 export default function FormInput(props) {
   const [focused, setFocused] = React.useState(false);
-  const {titel, errorMessage, onChange, icon, id, ...inputProps } = props;
-//   const fieldStyle=focused===true?"bg-color_3":"bg-color_5"
+  const { titel, errorMessage, onChange, icon, id, ...inputProps } = props;
   const handleFocus = (e) => {
     setFocused(true);
   };
@@ -26,7 +24,7 @@ export default function FormInput(props) {
             inputProps.name === "confirmPassword" && setFocused(true)
           }
           focused={focused.toString()}
-          className="w-full"
+          className="font-medium w-full bg-color_22 pl-11 py-3 focus:ring-2 rounded-lg border-2 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500"
         />
         <span className=" font-medium">{errorMessage}</span>
       </div>

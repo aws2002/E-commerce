@@ -59,7 +59,19 @@ body {
     display: none !important;
   }
 }
+input:invalid[focused="true"]{
+  border: 3px solid red;
+}
 
+input:invalid[focused="true"] ~ span{
+  display: block;
+}
+form span{
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
 
 @media screen and (min-width:1024px) {}
 

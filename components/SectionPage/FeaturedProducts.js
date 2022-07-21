@@ -70,8 +70,8 @@ export default function FeaturedProducts() {
           </div>
           <div className="col-span-12 mt-8">
             <Slider {...settings}>
-              {data.products.map((item) => (
-                <div className="my-10 px-2" key={item.id}>
+              {data.products.map((item,index) => (
+                <div className="my-10 px-2" key={index}>
                   <div className="bg-white rounded-lg pb-8 px-4">
                     <div className=" flex justify-center items-center  ">
                       <img className=" w-1/2" src={item.image} alt="" />

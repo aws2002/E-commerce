@@ -1,6 +1,9 @@
+import { useContext, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import { useSession } from 'next-auth/react';
+import { Store } from "../../contexts/Store";
 import { FaUserAlt, FaShoppingCart, FaBookmark } from "react-icons/fa";
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -14,6 +17,13 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const { status, data: session } = useSession();
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
   return (
     <Disclosure as="nav" className=" bg-color_1">
       {({ open }) => (
@@ -52,17 +62,35 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {[
-                  { id: 1, icon: <FaUserAlt />,href:"/login" },
-                  { id: 2, icon: <FaBookmark /> ,href:"/"},
-                  { id: 3, icon: <FaShoppingCart />,href:"/cart" },
-                ].map(({id,icon,href}) => (
-                  <Link href={href} key={id}>
-                    <a className="bg-gray-800 mx-2 p-3 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                      {icon}
+                <Link href={"/"}>
+                  <a className="bg-gray-800 mx-2 p-3 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <FaBookmark />
+                  </a>
+                </Link>
+                {/* <Link href={"/login"}>
+                  <a className="bg-gray-800 mx-2 p-3 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <FaUserAlt/>
                     </a>
+                </Link> */}
+                {status === "loading" ? (
+                  "Loading"
+                ) : session?.user ? (
+                  session.user.name
+                ) : (
+                  <Link href="/login">
+                    <a className="p-2">Login</a>
                   </Link>
-                ))}
+                )}
+                <Link href={"/cart"}>
+                  <a className="bg-gray-800 mx-2 p-3 relative rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <FaShoppingCart />
+                    {cartItemsCount > 0 && (
+                      <span className="rounded-full bg-red-600 -top-1 -right-1 absolute w-4 h-4 text-center text-xs font-bold text-white">
+                        {cartItemsCount}
+                      </span>
+                    )}
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

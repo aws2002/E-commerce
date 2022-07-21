@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import data from "../../components/Data";
 import Layout from "../../components/Layouts/Layout";
@@ -6,14 +6,27 @@ import Image from "next/image";
 import { FaBookmark } from "react-icons/fa";
 import FeaturedProducts from "../../components/SectionPage/FeaturedProducts";
 import Counter from "../../components/Tools/counter";
+import { Store } from "../../contexts/Store";
 export default function ProductScreen() {
+  const { state, dispatch } = useContext(Store);
   const router = useRouter();
   const { slug } = router.query;
   const prodeuct = data.products.find((item) => item.slug === slug);
   if (!prodeuct) {
     return <div>Product Not Found ....</div>;
   }
-  
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((x) => x.slug === prodeuct.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    if (prodeuct.countInStock < quantity) {
+      alert("Sorry. Product is out of stock");
+      return;
+    }
+
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...prodeuct, quantity } });
+  };
+
   return (
     <>
       {" "}
@@ -49,14 +62,17 @@ export default function ProductScreen() {
                 <div className=" col-span-1">
                   <h2 className=" text-2xl">Color:test</h2>
                 </div>
-               
+
                 <div className=" col-span-1">
                   <div className=" grid-cols-12 grid mt-3 gap-x-2">
                     <div className="col-span-2 bg-slate-100 rounded flex justify-center items-center">
                       <FaBookmark />
                     </div>
                     <div className=" col-span-10 bg-slate-100 text-center py-2 rounded">
-                      <button className=" w-full text-slate-600 font-semibold">
+                      <button
+                        className=" w-full text-slate-600 font-semibold"
+                        onClick={addToCartHandler}
+                      >
                         Add to cart
                       </button>
                     </div>

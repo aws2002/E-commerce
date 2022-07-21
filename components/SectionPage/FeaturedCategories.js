@@ -53,8 +53,8 @@ export default function FeaturedCategories() {
           </div>
           <div className="col-span-12 mt-8">
             <Slider {...settings}>
-              {data.products.map((item) => (
-                <div className="my-10 px-2" key={item.id}>
+              {data.products.map((item,index) => (
+                <div className="my-10 px-2" key={index}>
                   <div className=" flex justify-center items-center rounded-lg bg-slate-200">
                     <img className=" w-1/2" src={item.image} alt="" />
                   </div>

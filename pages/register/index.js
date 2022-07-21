@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import Head from "next/head";
 import Image from 'next/image'
+import Layout from "../../components/Layouts/Layout";
 import FormInput from "../../components/Tools/FormInput";
 export default function SignUp() {
   const [values, setValues] = React.useState({
@@ -154,3 +155,4 @@ export default function SignUp() {
     </>
   );
 }
+SignUp.Layout=Layout

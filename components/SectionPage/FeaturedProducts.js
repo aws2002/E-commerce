@@ -1,13 +1,9 @@
 import Slider from "react-slick";
 import React from "react";
-import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
-import Bookmark from "../Tools/Bookmark";
-import data from "../Data";
 import Link from "next/link";
-import db from "../../utils/db"
-import Product from '../../models/Product';
-export default function FeaturedProducts() {
-  
+import data from "../Data";
+import Image from "next/image";
+export default function FeaturedProducts({products=data.products}) {
   const settings = {
     dots: true,
     infinite: true,
@@ -48,16 +44,6 @@ export default function FeaturedProducts() {
       },
     ],
   };
-
-  const [Favorite, setFavorite] = React.useState(data.products);
-  function toggleFavorite() {
-    setFavorite((prevContact) => {
-      return {
-        ...prevContact,
-        isFavorite: !prevContact.isFavorite,
-      };
-    });
-  }
   return (
     <section className="TrendingCourses my-16 py-10 px-4 bg-slate-200">
       <div className="container overflow-hidden">
@@ -70,18 +56,18 @@ export default function FeaturedProducts() {
           </div>
           <div className="col-span-12 mt-8">
             <Slider {...settings}>
-              {data.products.map((item,index) => (
+              {products.map((item,index) => (
                 <div className="my-10 px-2" key={index}>
                   <div className="bg-white rounded-lg pb-8 px-4">
-                    <div className=" flex justify-center items-center  ">
-                      <img className=" w-1/2" src={item.image} alt="" />
+                    <div className=" flex justify-center items-center py-4">
+                      <Image width={220} height={200} src={item.image} alt="" />
                     </div>
                     <div className=" text-center">
-                      <Link href={`/products/${item.slug}`} >
+                      <Link href={`/product/${item.slug}`} >
                         <a className=" text-color_1 text-2xl">{item.name}</a>
                       </Link>
                       
-                      {item.star}
+                      
                       <span className=" mt-2 block text-xl font-bold">
                         ${item.price}
                       </span>

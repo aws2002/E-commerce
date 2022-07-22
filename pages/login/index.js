@@ -83,7 +83,9 @@ export default function LogIn() {
                     autoFocus
                   ></input>
                   {errors.email && (
-                    <span className=" font-medium">{errors.email.message}</span>
+                    <div className="text-red-500 ">
+                    {errors.email.message}
+                  </div>
                   )}
                 </div>
               </div>
@@ -112,9 +114,9 @@ export default function LogIn() {
                     autoFocus
                   ></input>
                   {errors.password && (
-                    <span className=" font-medium">
-                      {errors.password.message}
-                    </span>
+                    <div className="text-red-500 ">
+                    {errors.password.message}
+                  </div>
                   )}
                 </div>
               </div>

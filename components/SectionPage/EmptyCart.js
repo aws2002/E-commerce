@@ -2,7 +2,7 @@ import Link from "next/link";
 import Layout from "../Layouts/Layout";
 import { FaStarHalfAlt, FaStar, FaRegStar } from "react-icons/fa";
 import Image from "next/image";
-import ProductScreen from "../../components/SectionPage/ProductScreen";
+import RecentlyViewed from "../../components/SectionPage/RecentlyViewed";
 export default function EmptyCart() {
 
   return (
@@ -49,7 +49,7 @@ export default function EmptyCart() {
           </div>
         </div>
       </section>
-      <ProductScreen titel={"Recently viewed"}/>
+      <RecentlyViewed titel={"Recently viewed"}/>
     </>
   );
 }

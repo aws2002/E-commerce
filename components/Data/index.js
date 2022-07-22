@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 const data = {
   users: [
     {
-      name: "John",
+      name: "osama",
       email: "admin@example.com",
       password: bcrypt.hashSync("123456"),
       isAdmin: true,
@@ -31,10 +31,10 @@ const data = {
     },
     {
       id: 2,
-      name: "COMPUTER COMPONENTS",
-      slug: "computer124-components",
+      name: "LAPTOP",
+      slug: "laptasd123op",
       category: "Shirts",
-      image: "/assets/iphone11-removebg-preview.png",
+      image: "/assets/APPLE AIRPODS.png",
       price: 799.99,
       brand: "Nike",
       rating: 4.5,
@@ -46,9 +46,9 @@ const data = {
     {
       id: 3,
       name: "LAPTOP",
-      slug: "lapt125op",
+      slug: "laasdpt123op",
       category: "Shirts",
-      image: "/assets/laptop.png",
+      image: "/assets/canon.png",
       price: 799.99,
       brand: "Nike",
       rating: 4.5,
@@ -60,9 +60,9 @@ const data = {
     {
       id: 4,
       name: "LAPTOP",
-      slug: "lapt1asdf25op",
+      slug: "lapt1gda23op",
       category: "Shirts",
-      image: "/assets/laptop.png",
+      image: "/assets/PS5.webp",
       price: 799.99,
       brand: "Nike",
       rating: 4.5,
@@ -74,9 +74,9 @@ const data = {
     {
       id: 5,
       name: "LAPTOP",
-      slug: "laptasdsa1asdf25op",
+      slug: "lapt12asdff3op",
       category: "Shirts",
-      image: "/assets/laptop.png",
+      image: "/assets/logitech.png",
       price: 799.99,
       brand: "Nike",
       rating: 4.5,

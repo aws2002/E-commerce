@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from "next-auth/react";
+import Cookies from "js-cookie";
 import { Store } from "../../contexts/Store";
+import DropdownLink from "../Tools/DropdownLink";
 import { FaUserAlt, FaShoppingCart, FaBookmark } from "react-icons/fa";
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -24,6 +26,11 @@ export default function Navbar() {
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
+  const logoutClickHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+    signOut({ callbackUrl: "/login" });
+  };
   return (
     <Disclosure as="nav" className=" bg-color_1">
       {({ open }) => (
@@ -75,7 +82,93 @@ export default function Navbar() {
                 {status === "loading" ? (
                   "Loading"
                 ) : session?.user ? (
-                  session.user.name
+                  // <Menu as="div" className="relative inline-block">
+                  //   <Menu.Button className="text-blue-600">
+                  //     {session.user.name}
+                  //   </Menu.Button>
+                  //   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
+                  //     <Menu.Item>
+                  //       <DropdownLink className="dropdown-link" href="/profile">
+                  //         Profile
+                  //       </DropdownLink>
+                  //     </Menu.Item>
+                  //     <Menu.Item>
+                  //       <DropdownLink
+                  //         className="dropdown-link"
+                  //         href="/order-history"
+                  //       >
+                  //         Order History
+                  //       </DropdownLink>
+                  //     </Menu.Item>
+                  //     <Menu.Item>
+                  //       <a
+                  //         className="dropdown-link"
+                  //         href="#"
+                  //         onClick={logoutClickHandler}
+                  //       >
+                  //         Logout
+                  //       </a>
+                  //     </Menu.Item>
+                  //   </Menu.Items>
+                  // </Menu>
+                  <Menu as="div" className="ml-3 relative z-50">
+                    <Menu.Button className="bg-gray-800 p-2 text-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                      {session.user.name}
+                    </Menu.Button>
+
+                    <Transition
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link href="/profile">
+                              <a
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Your Profile
+                              </a>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="#"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Settings
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                              href="#"
+                              onClick={logoutClickHandler}
+                            >
+                              Logout
+                            </a>
+                          )}
+                        </Menu.Item>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
                 ) : (
                   <Link href="/login">
                     <a className="p-2">Login</a>

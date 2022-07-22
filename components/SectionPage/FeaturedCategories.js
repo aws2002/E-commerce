@@ -1,7 +1,8 @@
 import Slider from "react-slick";
 import React from "react";
 import data from "../Data";
-export default function FeaturedCategories() {
+import Image from "next/image";
+export default function FeaturedCategories({products}) {
   const settings = {
     dots: true,
     infinite: true,
@@ -53,10 +54,10 @@ export default function FeaturedCategories() {
           </div>
           <div className="col-span-12 mt-8">
             <Slider {...settings}>
-              {data.products.map((item,index) => (
+              {products.map((item,index) => (
                 <div className="my-10 px-2" key={index}>
-                  <div className=" flex justify-center items-center rounded-lg bg-slate-200">
-                    <img className=" w-1/2" src={item.image} alt="" />
+                  <div className=" flex justify-center items-center rounded-lg bg-slate-200 py-7">
+                    <Image width={120} height={120} src={item.image} alt="" />
                   </div>
                   <h2 className=" text-center mt-5 uppercase text-xl text-color_1">
                     {item.name}

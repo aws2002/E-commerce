@@ -79,8 +79,8 @@ export default function FeaturedProducts({products=data.products}) {
                             handleClick={toggleFavorite}
                           /> */}
                         </div>
-                        <div className=" col-span-10 bg-slate-100 text-center py-2 rounded">
-                          <button className=" w-full text-slate-600 font-semibold">
+                        <div className=" col-span-10 bg-slate-100 text-center py-2 rounded text-slate-600 transition-all hover:text-white hover:bg-main">
+                          <button className=" w-full  font-semibold">
                             Add to cart
                           </button>
                         </div>

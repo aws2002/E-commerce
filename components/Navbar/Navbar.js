@@ -4,8 +4,9 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import Cookies from "js-cookie";
+import { useRouter } from 'next/router';
 import { Store } from "../../contexts/Store";
-import DropdownLink from "../Tools/DropdownLink";
+import { FiSearch } from "react-icons/fi";
 import { FaUserAlt, FaShoppingCart, FaBookmark } from "react-icons/fa";
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -19,6 +20,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const router = useRouter();
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -30,6 +32,14 @@ export default function Navbar() {
     Cookies.remove("cart");
     dispatch({ type: "CART_RESET" });
     signOut({ callbackUrl: "/login" });
+  };
+  const [query, setQuery] = useState("");
+  const queryChangeHandler = (e) => {
+    setQuery(e.target.value);
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    router.push(`/search?query=${query}`);
   };
   return (
     <Disclosure as="nav" className=" bg-color_1">
@@ -49,7 +59,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
+                <div className="flex-shrink-0 flex items-center cursor-pointer">
                   <Link href={"/"}>
                     <span className=" text-white block lg:hidden text-xl w-auto hover:text-white">
                       <span className=" text-main">Pro</span>Shop
@@ -62,10 +72,26 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6 mxAuto w-1/3 pt-2">
-                  <input
-                    type="text"
-                    className=" w-full font-medium py-1 focus:ring-2 rounded-md focus:outline-none focus:border-indigo-500 focus:ring-indigo-500"
-                  />
+                  <div className=" grid grid-cols-12">
+                    <form className=" col-span-full" onSubmit={submitHandler}>
+                      <div className=" grid grid-cols-12">
+                        <div className=" col-span-11">
+                          <input
+                            onChange={queryChangeHandler}
+                            name="query"
+                            type="text"
+                            placeholder="Search products"
+                            className=" w-full px-2 font-medium py-1 rounded-tl-md rounded-bl-md focus:outline-none"
+                          />
+                        </div>
+                        <div className=" col-span-1 bg-main flex justify-center items-center rounded-tr-md rounded-br-md">
+                          <button type="submit">
+                            <FiSearch className=" text-xl" />
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -74,43 +100,10 @@ export default function Navbar() {
                     <FaBookmark />
                   </a>
                 </Link>
-                {/* <Link href={"/login"}>
-                  <a className="bg-gray-800 mx-2 p-3 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <FaUserAlt/>
-                    </a>
-                </Link> */}
+
                 {status === "loading" ? (
                   "Loading"
                 ) : session?.user ? (
-                  // <Menu as="div" className="relative inline-block">
-                  //   <Menu.Button className="text-blue-600">
-                  //     {session.user.name}
-                  //   </Menu.Button>
-                  //   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
-                  //     <Menu.Item>
-                  //       <DropdownLink className="dropdown-link" href="/profile">
-                  //         Profile
-                  //       </DropdownLink>
-                  //     </Menu.Item>
-                  //     <Menu.Item>
-                  //       <DropdownLink
-                  //         className="dropdown-link"
-                  //         href="/order-history"
-                  //       >
-                  //         Order History
-                  //       </DropdownLink>
-                  //     </Menu.Item>
-                  //     <Menu.Item>
-                  //       <a
-                  //         className="dropdown-link"
-                  //         href="#"
-                  //         onClick={logoutClickHandler}
-                  //       >
-                  //         Logout
-                  //       </a>
-                  //     </Menu.Item>
-                  //   </Menu.Items>
-                  // </Menu>
                   <Menu as="div" className="ml-3 relative z-50">
                     <Menu.Button className="bg-gray-800 p-2 text-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       {session.user.name}
@@ -152,6 +145,20 @@ export default function Navbar() {
                             </a>
                           )}
                         </Menu.Item>
+                        {session.user.isAdmin && (
+                          <Menu.Item>
+                            <Link href="/admin/dashboard">
+                              <a
+                                className={classNames(
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                {" "}
+                                Admin Dashboard
+                              </a>
+                            </Link>
+                          </Menu.Item>
+                        )}
                         <Menu.Item>
                           {({ active }) => (
                             <a

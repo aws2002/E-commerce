@@ -8,7 +8,7 @@ const data = {
       isAdmin: true,
     },
     {
-      name: "Jane",
+      name: "test",
       email: "user@example.com",
       password: bcrypt.hashSync("123456"),
       isAdmin: false,
@@ -31,7 +31,7 @@ const data = {
     },
     {
       id: 2,
-      name: "LAPTOP",
+      name: "Canon Eos 80D DSLR Camera",
       slug: "laptasd123op",
       category: "Shirts",
       image: "/assets/APPLE AIRPODS.png",
@@ -45,7 +45,7 @@ const data = {
     },
     {
       id: 3,
-      name: "LAPTOP",
+      name: "Logitech G-Series Gaming Mouse",
       slug: "laasdpt123op",
       category: "Shirts",
       image: "/assets/canon.png",
@@ -59,7 +59,7 @@ const data = {
     },
     {
       id: 4,
-      name: "LAPTOP",
+      name: "Amazon Echo Dot 3rd Generation",
       slug: "lapt1gda23op",
       category: "Shirts",
       image: "/assets/PS5.webp",
@@ -73,7 +73,7 @@ const data = {
     },
     {
       id: 5,
-      name: "LAPTOP",
+      name: "Sony Playstation 4 Pro",
       slug: "lapt12asdff3op",
       category: "Shirts",
       image: "/assets/logitech.png",

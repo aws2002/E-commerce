@@ -87,9 +87,7 @@ export default function Register() {
                     autoFocus
                   ></input>
                   {errors.name && (
-                    <div className="text-red-500 ">
-                    {errors.name.message}
-                  </div>
+                    <div className="text-red-500 ">{errors.name.message}</div>
                   )}
                 </div>
               </div>
@@ -119,9 +117,7 @@ export default function Register() {
                     autoFocus
                   ></input>
                   {errors.email && (
-                    <div className="text-red-500 ">
-                    {errors.email.message}
-                  </div>
+                    <div className="text-red-500 ">{errors.email.message}</div>
                   )}
                 </div>
               </div>
@@ -150,8 +146,8 @@ export default function Register() {
                   ></input>
                   {errors.password && (
                     <div className="text-red-500 ">
-                    {errors.password.message}
-                  </div>
+                      {errors.password.message}
+                    </div>
                   )}
                 </div>
               </div>
@@ -181,8 +177,8 @@ export default function Register() {
                   ></input>
                   {errors.confirmPassword && (
                     <div className="text-red-500 ">
-                    {errors.confirmPassword.message}
-                  </div>
+                      {errors.confirmPassword.message}
+                    </div>
                   )}
                   {errors.confirmPassword &&
                     errors.confirmPassword.type === "validate" && (
@@ -190,7 +186,7 @@ export default function Register() {
                     )}
                 </div>
               </div>
-              
+
               <button className=" block bg-main font-medium w-full mt-8 py-3 rounded-lg">
                 Sign up now
               </button>
@@ -206,7 +202,7 @@ export default function Register() {
                 </div>
                 <div className="col-span-12 text-center mt-3 md:mb-0 mb-5">
                   <p className=" font-medium text-color_1">
-                  Have an account ? {" "}
+                    Have an account ?{" "}
                     <Link href={`/register?redirect=${redirect || "/"}`}>
                       <a className=" text-color_5">Login</a>
                     </Link>
